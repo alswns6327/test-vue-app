@@ -1,47 +1,39 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
-</script>
-
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
-
-  <main>
-    <TheWelcome />
-  </main>
+  <div>
+    <h2>App 컴포넌트</h2>
+    <!-- <CheckboxItem v-for="lang in langs" :name="lang.name" :checked="lang.checked" :key="lang.id"/> -->
+    <CheckboxItem v-for="lang in langs" v-bind="lang" :key="lang.id"/>
+    <!-- <CheckboxItem v-for="lang in langs" :lang="lang" :key="lang.id"/> -->
+  </div>
 </template>
 
+<script>
+  import Lang from './Lang';
+import CheckboxItem from './components/CheckboxItem.vue';
+  export default {
+    name:"App",
+    components:{ CheckboxItem },
+    data(){
+      return {
+        // langs : [
+        //   new Lang(1 , "python", false),
+        //   new Lang(2 , "java", true),
+        //   new Lang(3 , "javascript", false),
+        //   new Lang(4 , "C", false),
+        //   new Lang(5 , "C#", false),
+        // ]
+        langs : [
+          {id:1 , name:"python", checked :false},
+          {id:2 , name:"java", checked :true},
+          {id:3 , name:"javascript", checked :false},
+          {id:4 , name:"C", checked :false},
+          {id:5 , name:"C#", checked :false},
+        ]
+      }
+    }
+  }
+</script>
+
 <style scoped>
-header {
-  line-height: 1.5;
-}
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-}
 </style>
